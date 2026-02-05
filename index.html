@@ -5,257 +5,185 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DeewNime - Penyihir Pengembara: Perjalanan Elaina</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+  /* ===== RESET ===== */
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+  body{overflow-x:hidden;color:#fff;background:#0d0b1a;}
+  a{color:#b0aaff;text-decoration:none;}
+  a:hover{color:#fff;}
+  
+  /* ===== BACKGROUND VIDEO ===== */
+  .bg-video{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-2;overflow:hidden;}
+  .bg-video video{width:100%;height:100%;object-fit:cover;}
 
-body {
-  margin:0;
-  font-family: 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #6a5acd, #483d8b);
-  color: #fff;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-  position: relative;
-}
+  /* ===== PARTICLES BINTANG ===== */
+  .star{position:absolute;width:2px;height:2px;background:white;border-radius:50%;animation:twinkle 3s infinite;}
+  @keyframes twinkle{0%,100%{opacity:0;}50%{opacity:1;}}
 
-/* VIDEO BACKGROUND */
-.video-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  overflow: hidden;
-}
-.video-bg video {
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  pointer-events: none;
-  opacity: 0.5;
-}
+  /* ===== CONTAINER ===== */
+  .container{position:relative;z-index:2;padding:20px;text-align:center;}
+  h1{font-size:2.4rem;color:#b0aaff;margin-bottom:5px;text-shadow:2px 2px 6px #000;}
+  .subtitle{font-size:1.2rem;color:#9fa0ff;margin-bottom:20px;text-shadow:1px 1px 4px #000;}
+  
+  /* ===== SINOPSIS ===== */
+  .sinopsis{max-width:800px;margin:0 auto 30px auto;padding:15px;background:rgba(0,0,0,0.1);border-radius:10px;font-size:1rem;color:#fff;text-shadow:1px 1px 2px #000;}
 
-/* PARTICLES BINTANG */
-#particles {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  pointer-events: none;
-  z-index: -1;
-}
+  /* ===== VIDEO PLAYER ===== */
+  .video-player{width:100%;max-width:800px;margin:0 auto 20px auto;position:relative;border:4px solid #6c5fe5;border-radius:12px;background:rgba(0,0,0,0.2);}
+  video, iframe{width:100%;border-radius:8px;outline:none;}
 
-/* MAIN CONTAINER */
-.container {
-  max-width: 960px;
-  margin: auto;
-  padding: 20px;
-  text-align: center;
-}
+  /* ===== EPISODE BUTTONS ===== */
+  .episodes{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin:20px 0;}
+  .episodes button{padding:6px 12px;background:#4b3fa3;border:none;border-radius:6px;color:#fff;cursor:pointer;transition:0.2s;}
+  .episodes button:hover{background:#6c5fe5;}
+  
+  /* ===== OP/ED/TRAILER ===== */
+  .extras{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:20px;}
+  .extras button{padding:6px 12px;background:#7a62ff;border:none;border-radius:6px;color:#fff;cursor:pointer;transition:0.2s;}
+  .extras button:hover{background:#9a8cff;}
 
-/* HEADER */
-h1 {
-  margin-bottom: 5px;
-  font-size: 2.5rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,.5);
-}
-h2 {
-  margin-bottom: 15px;
-  font-size: 1.3rem;
-  font-weight: 400;
-}
+  /* ===== THUMBNAILS LN 25 ===== */
+  .thumbnails{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:40px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:10px;}
+  .thumb-item{text-align:center;color:#fff;text-shadow:1px 1px 3px #000;flex:0 0 auto;}
+  .thumb-item img{width:120px;height:auto;border-radius:8px;border:2px solid #6c5fe5;box-shadow:0 0 10px rgba(0,0,0,0.5);transition:0.2s;background:rgba(0,0,0,0.2);}
+  .thumb-item img:hover{transform:scale(1.05);}
 
-/* SINOPSIS */
-.synopsis {
-  font-size: 14px;
-  line-height: 1.6;
-  margin-bottom: 25px;
-  background: rgba(0,0,0,0.3);
-  padding: 12px 16px;
-  border-radius: 12px;
-}
-
-/* PLAYER */
-.player video {
-  width: 100%;
-  max-width: 720px;
-  height: 405px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.3);
-  margin-bottom: 20px;
-}
-
-/* EPISODE / TRAILER / OP / ED BUTTONS */
-.buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-.buttons button {
-  background: rgba(75,0,130,0.7);
-  color: #fff;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
-}
-.buttons button:hover {
-  background: rgba(138,43,226,0.8);
-  transform: scale(1.05);
-}
-
-/* ALBUM GRID */
-.album {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 12px;
-  margin-top: 20px;
-}
-.thumb {
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 6px 20px rgba(0,0,0,.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.thumb img {
-  width: 100%;
-  display: block;
-  border-radius: 12px;
-}
-.thumb:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 25px rgba(0,0,0,.3);
-}
-.thumb-label {
-  text-align:center;
-  font-size:12px;
-  margin-top:4px;
-}
-
-/* TAG @DeewNime */
-.tag {
-  position: fixed;
-  bottom: 12px;
-  right: 12px;
-  background: rgba(0,0,0,0.4);
-  color: #fff;
-  padding: 6px 12px;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: bold;
-  z-index: 100;
-  backdrop-filter: blur(5px);
-}
+  /* ===== TAG ===== */
+  .tag{position:fixed;bottom:10px;right:10px;font-size:0.9rem;color:#b0aaff;opacity:0.8;text-shadow:1px 1px 3px #000;}
 </style>
 </head>
 <body>
 
-<div class="video-bg">
-  <video autoplay muted loop playsinline>
+<!-- BACKGROUND VIDEO -->
+<div class="bg-video">
+  <video muted loop autoplay>
     <source src="elainavid.mp4" type="video/mp4">
-    Browser tidak mendukung video.
+    Browser tidak mendukung video background.
   </video>
 </div>
 
-<div id="particles"></div>
+<!-- PARTICLES BINTANG -->
+<script>
+  for(let i=0;i<100;i++){
+    let star = document.createElement('div');
+    star.className='star';
+    star.style.top=Math.random()*100+'%';
+    star.style.left=Math.random()*100+'%';
+    star.style.animationDuration=(Math.random()*2+1)+'s';
+    document.body.appendChild(star);
+  }
+</script>
 
 <div class="container">
   <h1>DeewNime</h1>
-  <h2>Penyihir Pengembara: Perjalanan Elaina</h2>
-
-  <div class="synopsis">
-    Sejak kecil, Elaina selalu terpesona oleh cerita-cerita dalam buku favoritnya, terutama tentang Nike, seorang penyihir terkenal yang telah melakukan banyak perjalanan hebat ke seluruh dunia. Ingin merasakan sendiri keseruan petualangan, Elaina berjuang untuk menjadi seorang penyihir, dan meskipun menghadapi banyak cobaan, ia akhirnya berhasil.
-    <br><br>
-    Kini sebagai penyihir sejati, Elaina akhirnya memulai perjalanan yang telah lama dinantikannya, di mana ia bertemu banyak orang di sepanjang jalan, mempelajari berbagai kisah mereka. Melalui semua ini, ia menjelajahi dunia sepenuhnya—mengalami sisi terang dan gelapnya—memulai kisah legendarisnya.
-  </div>
-
-  <div class="player">
-    <video id="mainPlayer" controls autoplay muted loop>
-      <source src="https://e.pcloud.link/publink/show?code=XZMzNaZMcmraotBhLYQcxzfM3MrCYRdBIeX" type="video/mp4">
-      Browser tidak mendukung video ini.
+  <div class="subtitle">Penyihir Pengembara: Perjalanan Elaina</div>
+  
+  <p class="sinopsis">Sejak kecil, Elaina selalu terpesona oleh cerita-cerita dalam buku favoritnya, terutama tentang Nike, seorang penyihir terkenal yang telah melakukan banyak perjalanan hebat ke seluruh dunia. Ingin merasakan sendiri keseruan petualangan, Elaina berjuang untuk menjadi seorang penyihir, dan meskipun menghadapi banyak cobaan, ia akhirnya berhasil.<br><br>
+Kini sebagai penyihir sejati, Elaina akhirnya memulai perjalanan yang telah lama dinantikannya, di mana ia bertemu banyak orang di sepanjang jalan, mempelajari berbagai kisah mereka. Melalui semua ini, ia menjelajahi dunia sepenuhnya—mengalami sisi terang dan gelapnya—memulai kisah legendarisnya.</p>
+  
+  <!-- VIDEO PLAYER -->
+  <div class="video-player" id="videoContainer">
+    <video id="mainVideo" controls>
+      <source src="https://edef7.pcloud.com/cfZx05MVGZesJrWK7ZLoW2ZZxg2N0kZQ5ZZEJJZZhte4mZcFZJHZdXZqLZrzZF4ZYHZu8ZQ0ZoVZ68ZzRZyJZjVZwMtTBNdI8n8SbXm80misWjFcXVpk/Wandering%20Witch%20Elaina%20Episode%201.mp4" type="video/mp4">
+      Browser kamu tidak mendukung video.
     </video>
   </div>
 
-  <div class="buttons" id="episodeButtons">
-    <!-- Episode Buttons -->
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZMzNaZMcmraotBhLYQcxzfM3MrCYRdBIeX')">Episode 1</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZbkNaZNNBfTq8AyDfAWYFeK0xq28OBL7PX')">Episode 2</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZizNaZxWK9WEIEjzbDVQvSz9VqDYDKF7zk')">Episode 3</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZozNaZvbl1Ptq4v1XvX2QDzj0pWQjNu2sV')">Episode 4</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZVRNaZUEJixGgcTEmVyOJPfvP6tpppe3QX')">Episode 5</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZ5RNaZVu23n35ltUVycmU4TnJFh4SL2J4V')">Episode 6</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZLRNaZvSX672eHeyRrfNw4vFPaAQ1AMXE7')">Episode 7</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZQRNaZNKU5qk8D1oSU3Yb01Pk6NQQofk0y')">Episode 8</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZbRNaZJaJ25KESOImQRdPo2iomyYXeYy4X')">Episode 9</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZjRNaZtwyYiV57g6XD12PMkIyP47C00iay')">Episode 10</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZfRNaZyQi92po7vGVyrnSoyk5llpK3BanV')">Episode 11</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZeRNaZyj4Y34bbfl5mRjYm1MpTQ0kFxQxy')">Episode 12</button>
-    <!-- Trailer & OP/ED -->
-    <button onclick="playVideo('https://youtu.be/pRbZSDOkInM?si=OekJ7NyoVBD_Xwla')">Trailer Movie</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZvLNaZTcDPHC1Y4wm8BqnopKv0nuFiibNV')">Opening Music</button>
-    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZm4NaZWeQU1aDmUSXDaxxuzfhqJF1wrJ5V')">Ending Music</button>
+  <!-- EPISODE BUTTONS -->
+  <div class="episodes">
+    <button onclick="changeVideo(1)">Episode 1</button>
+    <button onclick="changeVideo(2)">Episode 2</button>
+    <button onclick="changeVideo(3)">Episode 3</button>
+    <button onclick="changeVideo(4)">Episode 4</button>
+    <button onclick="changeVideo(5)">Episode 5</button>
+    <button onclick="changeVideo(6)">Episode 6</button>
+    <button onclick="changeVideo(7)">Episode 7</button>
+    <button onclick="changeVideo(8)">Episode 8</button>
+    <button onclick="changeVideo(9)">Episode 9</button>
+    <button onclick="changeVideo(10)">Episode 10</button>
+    <button onclick="changeVideo(11)">Episode 11</button>
+    <button onclick="changeVideo(12)">Episode 12</button>
+  </div>
+  
+  <!-- OP / ED / TRAILER -->
+  <div class="extras">
+    <button onclick="changeVideo('op')">Opening</button>
+    <button onclick="changeVideo('ed')">Ending</button>
+    <button onclick="changeVideo('trailer')">Trailer Movie</button>
   </div>
 
-  <div class="album">
-    <!-- 25 thumbnails lokal -->
-    <div class="thumb"><img src="Ln1.jpg" alt="Volume 1"><div class="thumb-label">Volume 1</div></div>
-    <div class="thumb"><img src="Ln2.jpg" alt="Volume 2"><div class="thumb-label">Volume 2</div></div>
-    <div class="thumb"><img src="Ln3.jpg" alt="Volume 3"><div class="thumb-label">Volume 3</div></div>
-    <div class="thumb"><img src="Ln4.jpg" alt="Volume 4"><div class="thumb-label">Volume 4</div></div>
-    <div class="thumb"><img src="Ln5.jpg" alt="Volume 5"><div class="thumb-label">Volume 5</div></div>
-    <div class="thumb"><img src="Ln6.jpg" alt="Volume 6"><div class="thumb-label">Volume 6</div></div>
-    <div class="thumb"><img src="Ln7.jpg" alt="Volume 7"><div class="thumb-label">Volume 7</div></div>
-    <div class="thumb"><img src="Ln8.jpg" alt="Volume 8"><div class="thumb-label">Volume 8</div></div>
-    <div class="thumb"><img src="Ln9.jpg" alt="Volume 9"><div class="thumb-label">Volume 9</div></div>
-    <div class="thumb"><img src="Ln10.jpg" alt="Volume 10"><div class="thumb-label">Volume 10</div></div>
-    <div class="thumb"><img src="Ln11.jpg" alt="Volume 11"><div class="thumb-label">Volume 11</div></div>
-    <div class="thumb"><img src="Ln12.jpg" alt="Volume 12"><div class="thumb-label">Volume 12</div></div>
-    <div class="thumb"><img src="Ln13.jpg" alt="Volume 13"><div class="thumb-label">Volume 13</div></div>
-    <div class="thumb"><img src="Ln14.jpg" alt="Volume 14"><div class="thumb-label">Volume 14</div></div>
-    <div class="thumb"><img src="Ln15.jpg" alt="Volume 15"><div class="thumb-label">Volume 15</div></div>
-    <div class="thumb"><img src="Ln16.jpg" alt="Volume 16"><div class="thumb-label">Volume 16</div></div>
-    <div class="thumb"><img src="Ln17.jpg" alt="Volume 17"><div class="thumb-label">Volume 17</div></div>
-    <div class="thumb"><img src="Ln18.jpg" alt="Volume 18"><div class="thumb-label">Volume 18</div></div>
-    <div class="thumb"><img src="Ln19.jpg" alt="Volume 19"><div class="thumb-label">Volume 19</div></div>
-    <div class="thumb"><img src="Ln20.jpg" alt="Volume 20"><div class="thumb-label">Volume 20</div></div>
-    <div class="thumb"><img src="Ln21.jpg" alt="Volume 21"><div class="thumb-label">Volume 21</div></div>
-    <div class="thumb"><img src="Ln22.jpg" alt="Volume 22"><div class="thumb-label">Volume 22</div></div>
-    <div class="thumb"><img src="Ln23.jpg" alt="Volume 23"><div class="thumb-label">Volume 23</div></div>
-    <div class="thumb"><img src="Ln24.jpg" alt="Volume 24"><div class="thumb-label">Volume 24</div></div>
-    <div class="thumb"><img src="Ln25.jpg" alt="Volume 25"><div class="thumb-label">Volume 25</div></div>
+  <!-- THUMBNAILS LN 25 -->
+  <div class="thumbnails">
+    <div class="thumb-item"><img src="Ln1.jpg" alt="Volume 1"><div>Volume 1</div></div>
+    <div class="thumb-item"><img src="Ln2.jpg" alt="Volume 2"><div>Volume 2</div></div>
+    <div class="thumb-item"><img src="Ln3.jpg" alt="Volume 3"><div>Volume 3</div></div>
+    <div class="thumb-item"><img src="Ln4.jpg" alt="Volume 4"><div>Volume 4</div></div>
+    <div class="thumb-item"><img src="Ln5.jpg" alt="Volume 5"><div>Volume 5</div></div>
+    <div class="thumb-item"><img src="Ln6.jpg" alt="Volume 6"><div>Volume 6</div></div>
+    <div class="thumb-item"><img src="Ln7.jpg" alt="Volume 7"><div>Volume 7</div></div>
+    <div class="thumb-item"><img src="Ln8.jpg" alt="Volume 8"><div>Volume 8</div></div>
+    <div class="thumb-item"><img src="Ln9.jpg" alt="Volume 9"><div>Volume 9</div></div>
+    <div class="thumb-item"><img src="Ln10.jpg" alt="Volume 10"><div>Volume 10</div></div>
+    <div class="thumb-item"><img src="Ln11.jpg" alt="Volume 11"><div>Volume 11</div></div>
+    <div class="thumb-item"><img src="Ln12.jpg" alt="Volume 12"><div>Volume 12</div></div>
+    <div class="thumb-item"><img src="Ln13.jpg" alt="Volume 13"><div>Volume 13</div></div>
+    <div class="thumb-item"><img src="Ln14.jpg" alt="Volume 14"><div>Volume 14</div></div>
+    <div class="thumb-item"><img src="Ln15.jpg" alt="Volume 15"><div>Volume 15</div></div>
+    <div class="thumb-item"><img src="Ln16.jpg" alt="Volume 16"><div>Volume 16</div></div>
+    <div class="thumb-item"><img src="Ln17.jpg" alt="Volume 17"><div>Volume 17</div></div>
+    <div class="thumb-item"><img src="Ln18.jpg" alt="Volume 18"><div>Volume 18</div></div>
+    <div class="thumb-item"><img src="Ln19.jpg" alt="Volume 19"><div>Volume 19</div></div>
+    <div class="thumb-item"><img src="Ln20.jpg" alt="Volume 20"><div>Volume 20</div></div>
+    <div class="thumb-item"><img src="Ln21.jpg" alt="Volume 21"><div>Volume 21</div></div>
+    <div class="thumb-item"><img src="Ln22.jpg" alt="Volume 22"><div>Volume 22</div></div>
+    <div class="thumb-item"><img src="Ln23.jpg" alt="Volume 23"><div>Volume 23</div></div>
+    <div class="thumb-item"><img src="Ln24.jpg" alt="Volume 24"><div>Volume 24</div></div>
+    <div class="thumb-item"><img src="Ln25.jpg" alt="Volume 25"><div>Volume 25</div></div>
   </div>
 </div>
 
+<!-- TAG DEEWNIME -->
 <div class="tag">@DeewNime</div>
 
 <script>
-// Ganti video player
-function playVideo(url) {
-  const player = document.getElementById('mainPlayer');
-  player.src = url;
-  player.play();
-}
+  const episodes = [
+    "https://edef7.pcloud.com/cfZx05MVGZesJrWK7ZLoW2ZZxg2N0kZQ5ZZEJJZZhte4mZcFZJHZdXZqLZrzZF4ZYHZu8ZQ0ZoVZ68ZzRZyJZjVZwMtTBNdI8n8SbXm80misWjFcXVpk/Wandering%20Witch%20Elaina%20Episode%201.mp4",
+    "https://edef4.pcloud.com/cfZ2dG1VGZsPFNWK7ZLoW2ZZFP2N0kZQ5ZZEJJZZOu1lmZvpZyQZi5ZSpZx8ZmQZdXZoRZ9LZ1XZt0ZwXZKzZI8Z2DHERr4knS0u6CwiPl3Lr4GdJ3Uk/Wandering%20Witch%20Elaina%20Episode%202.mp4",
+    "https://edef7.pcloud.com/cfZEinTVGZrqmysK7ZLoW2ZZ9P2N0kZQ5ZZEJJZZPGm2mZsLZ1JZrLZBVZNzZi5ZV5ZqFZrVZN4ZtLZXQZgXZTJZ8OoL6WMmB9p3mMgYEXg9yJfqW667/Wandering%20Witch%20Elaina%20Episode%203.mp4",
+    "https://edef1.pcloud.com/cfZ7Q3TVGZFTz7sK7ZLoW2ZZiP2N0kZQ5ZZEJJZZFlDouZvHZI0ZiJZ90Zy5ZwRZuLZMpZvpZ5LZN7Zm8ZwFZU4ZKSno5PE4od5q1FozVf9HoLlB8867/Wandering%20Witch%20Elaina%20Episode%204.mp4",
+    "https://edef11.pcloud.com/cfZTBzPVGZc6vXsK7ZLoW2ZZuC2N0kZQ5ZZEJJZZB60RmZS8Zm5Z28Z5XZUzZxJZoLZskZr0ZXHZTpZr4Z5QZUJZtRwB5KgYlnbBbeuRf8BHUSjHiAP7/Wandering%20Witch%20Elaina%20Episode%206.mp4",
+    "https://edef11.pcloud.com/cfZTBzPVGZc6vXsK7ZLoW2ZZEC2N0kZQ5ZZEJJZZB60RmZS8Zm5Z28Z5XZUzZxJZoLZskZr0ZXHZTpZr4Z5QZUJZgIfamOiCIVQHR47oGx6e8mkT2IDX/Wandering%20Witch%20Elaina%20Episode%206.mp4",
+    "https://edef11.pcloud.com/cfZCbBCVGZBHj5sK7ZLoW2ZZbx2N0kZQ5ZZEJJZZ8pOUSZHJZ9XZNHZW4Z0RZiFZxZ18ZMpZ2RZcXZ6HZAzZx8ZEqT0KuLyV8BFLBMl9NpmI0rYGwE7/Wandering%20Witch%20Elaina%20Episode%207.mp4",
+    "https://edef7.pcloud.com/cfZnOuCVGZ9fb5sK7ZLoW2ZZ6x2N0kZQ5ZZEJJZZkrRVbZWJZfkZ24Z7QZ1RZk4ZX8ZkJZhRZIHZt4Zo7Z48ZoHZTX9yESpklgXNzORFvb5vT7USHkD7/Wandering%20Witch%20Elaina%20Episode%208.mp4",
+    "https://edef2.pcloud.com/cfZNc8xVGZivvJsK7ZLoW2ZZpw2N0kZQ5ZZEJJZZHw8JbZm8ZtLZDHZ9LZ4QZHJZJ8ZTRZg8Zu0ZaRZcJZ28Z7LZb7FmsSDpnGfrMeosk0BVH7KnjO6k/Wandering%20Witch%20Elaina%20Episode%209.mp4",
+    "https://edef1.pcloud.com/cfZQmMxVGZRn1FsK7ZLoW2ZZ1w2N0kZQ5ZZEJJZZdb2xmZALZrLZ74ZzRZvXZQpZDFZCHZy7ZiFZxVZVRZXLZXQZ5rmKgCmL6amwdTLgQeAx9Hdfok67/Wandering%20Witch%20Elaina%20Episode%2010.mp4",
+    "https://edef10.pcloud.com/cfZzpNxVGZ6E5psK7ZLoW2ZZOw2N0kZQ5ZZEJJZZH3EMRZyHZ6LZzzZGRZ25Z6JZgpZMHZrFZ6HZs4ZtXZ5QZ14ZH5fjzJxJjl5mLU2rtLx4ljBBj1Fk/Wandering%20Witch%20Elaina%20Episode%2011.mp4",
+    "https://edef11.pcloud.com/cfZQRdwVGZtbGHsK7ZLoW2ZZ0K2N0kZQ5ZZEJJZZfGuFmZ10Zd8Z7zZPRZ75ZW0ZU4ZjzZH5Z0LZu0ZDHZ7pZjHZmfdNv5M5G0mWQuHofOjT6jShgLey/Wandering%20Witch%20Elaina%20Episode%2012.mp4"
+  ];
 
-// SIMPLE PARTICLES JS
-const particlesContainer = document.getElementById('particles');
-const totalParticles = 60;
-for(let i=0;i<totalParticles;i++){
-  const star = document.createElement('div');
-  star.style.position='absolute';
-  star.style.width=Math.random()*3+2+'px';
-  star.style.height=star.style.width;
-  star.style.background='rgba(255,255,255,'+Math.random()+')';
-  star.style.borderRadius='50%';
-  star.style.top=Math.random()*100+'%';
-  star.style.left=Math.random()*100+'%';
-  star.style.animation='twinkle '+(Math.random()*5+5)+'s linear infinite';
-  particlesContainer.appendChild(star);
-}
-const style = document.createElement('style');
-style.innerHTML='@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:1;}}';
-document.head.appendChild(style);
+  const op =  "https://edef7.pcloud.com/cfZKePlVGZbmP4sK7ZLoW2ZZVl2N0kZQ5ZZEJJZZ1gllVZwRZukZIJZp5ZnJZrXZ0pZ0JZ3pZa4ZV5ZJ4ZARZf4ZapnxsN9ua2b0KJm6jqlzB4foSAqX/Wandering%20Witch%20Elaina%20OP.mp4";
+const ed = "https://edef7.pcloud.com/cfZGd7qVGZ214YsK7ZLoW2ZZll2N0kZQ5ZZEJJZZfrI3XZXpZuLZxXZSkZ8QZTHZs8ZbRZxVZo8ZMFZC0ZJRZ0RZeb0lFVjaAh56PerPyNkVizsDIfGX/Wandering%20Witch%20Elaina%20ED.mp4";
+  const trailer = "https://youtu.be/pRbZSDOkInM?si=v49Gfg93L1VOGT3k";
+
+  function changeVideo(ep){
+    const player = document.getElementById('mainVideo');
+    if(ep === 'op') {
+      player.src = op;
+      player.load();
+    }
+    else if(ep === 'ed') {
+      player.src = ed;
+      player.load();
+    }
+    else if(ep === 'trailer') {
+      window.open(trailer, '_blank'); // YouTube buka di tab baru
+      return;
+    }
+    else {
+      player.src = episodes[ep-1];
+      player.load();
+    }
+    player.play();
+  }
 </script>
 
 </body>
