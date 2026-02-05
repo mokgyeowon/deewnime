@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeewNime</title>
+<title>DeewNime - Penyihir Pengembara: Perjalanan Elaina</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
@@ -17,26 +17,30 @@ body {
   position: relative;
 }
 
-/* VIDEO BACKGROUND LOKAL */
+/* VIDEO BACKGROUND */
 .video-bg {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   overflow: hidden;
 }
 .video-bg video {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  pointer-events: none; /* tidak bisa diklik */
-  opacity: 0.5; /* bisa diatur */
-}
-.video-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.25); /* overlay biar teks terbaca */
   pointer-events: none;
+  opacity: 0.5;
+}
+
+/* PARTICLES BINTANG */
+#particles {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* MAIN CONTAINER */
@@ -49,24 +53,57 @@ body {
 
 /* HEADER */
 h1 {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   font-size: 2.5rem;
   text-shadow: 0 2px 8px rgba(0,0,0,.5);
 }
+h2 {
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+/* SINOPSIS */
+.synopsis {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  background: rgba(0,0,0,0.3);
+  padding: 12px 16px;
+  border-radius: 12px;
+}
 
 /* PLAYER */
-.player iframe {
+.player video {
   width: 100%;
   max-width: 720px;
   height: 405px;
-  border: none;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,.3);
-  margin-bottom: 30px;
-  transition: all 0.3s ease;
+  margin-bottom: 20px;
 }
-.player iframe:hover {
-  transform: scale(1.02);
+
+/* EPISODE / TRAILER / OP / ED BUTTONS */
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.buttons button {
+  background: rgba(75,0,130,0.7);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+.buttons button:hover {
+  background: rgba(138,43,226,0.8);
+  transform: scale(1.05);
 }
 
 /* ALBUM GRID */
@@ -74,9 +111,8 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 12px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
-
 .thumb {
   border-radius: 12px;
   overflow: hidden;
@@ -119,19 +155,51 @@ h1 {
 <div class="video-bg">
   <video autoplay muted loop playsinline>
     <source src="elainavid.mp4" type="video/mp4">
-    Video tidak didukung browser ini.
+    Browser tidak mendukung video.
   </video>
 </div>
 
+<div id="particles"></div>
+
 <div class="container">
   <h1>DeewNime</h1>
-  
+  <h2>Penyihir Pengembara: Perjalanan Elaina</h2>
+
+  <div class="synopsis">
+    Sejak kecil, Elaina selalu terpesona oleh cerita-cerita dalam buku favoritnya, terutama tentang Nike, seorang penyihir terkenal yang telah melakukan banyak perjalanan hebat ke seluruh dunia. Ingin merasakan sendiri keseruan petualangan, Elaina berjuang untuk menjadi seorang penyihir, dan meskipun menghadapi banyak cobaan, ia akhirnya berhasil.
+    <br><br>
+    Kini sebagai penyihir sejati, Elaina akhirnya memulai perjalanan yang telah lama dinantikannya, di mana ia bertemu banyak orang di sepanjang jalan, mempelajari berbagai kisah mereka. Melalui semua ini, ia menjelajahi dunia sepenuhnya—mengalami sisi terang dan gelapnya—memulai kisah legendarisnya.
+  </div>
+
   <div class="player">
-    <iframe src="https://archive.org/embed/akz-majo-no-tabitabi-bd-01" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    <video id="mainPlayer" controls autoplay muted loop>
+      <source src="https://e.pcloud.link/publink/show?code=XZMzNaZMcmraotBhLYQcxzfM3MrCYRdBIeX" type="video/mp4">
+      Browser tidak mendukung video ini.
+    </video>
+  </div>
+
+  <div class="buttons" id="episodeButtons">
+    <!-- Episode Buttons -->
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZMzNaZMcmraotBhLYQcxzfM3MrCYRdBIeX')">Episode 1</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZbkNaZNNBfTq8AyDfAWYFeK0xq28OBL7PX')">Episode 2</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZizNaZxWK9WEIEjzbDVQvSz9VqDYDKF7zk')">Episode 3</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZozNaZvbl1Ptq4v1XvX2QDzj0pWQjNu2sV')">Episode 4</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZVRNaZUEJixGgcTEmVyOJPfvP6tpppe3QX')">Episode 5</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZ5RNaZVu23n35ltUVycmU4TnJFh4SL2J4V')">Episode 6</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZLRNaZvSX672eHeyRrfNw4vFPaAQ1AMXE7')">Episode 7</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZQRNaZNKU5qk8D1oSU3Yb01Pk6NQQofk0y')">Episode 8</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZbRNaZJaJ25KESOImQRdPo2iomyYXeYy4X')">Episode 9</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZjRNaZtwyYiV57g6XD12PMkIyP47C00iay')">Episode 10</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZfRNaZyQi92po7vGVyrnSoyk5llpK3BanV')">Episode 11</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZeRNaZyj4Y34bbfl5mRjYm1MpTQ0kFxQxy')">Episode 12</button>
+    <!-- Trailer & OP/ED -->
+    <button onclick="playVideo('https://youtu.be/pRbZSDOkInM?si=OekJ7NyoVBD_Xwla')">Trailer Movie</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZvLNaZTcDPHC1Y4wm8BqnopKv0nuFiibNV')">Opening Music</button>
+    <button onclick="playVideo('https://e.pcloud.link/publink/show?code=XZm4NaZWeQU1aDmUSXDaxxuzfhqJF1wrJ5V')">Ending Music</button>
   </div>
 
   <div class="album">
-    <!-- 25 thumbnails lokal tanpa link -->
+    <!-- 25 thumbnails lokal -->
     <div class="thumb"><img src="Ln1.jpg" alt="Volume 1"><div class="thumb-label">Volume 1</div></div>
     <div class="thumb"><img src="Ln2.jpg" alt="Volume 2"><div class="thumb-label">Volume 2</div></div>
     <div class="thumb"><img src="Ln3.jpg" alt="Volume 3"><div class="thumb-label">Volume 3</div></div>
@@ -162,5 +230,33 @@ h1 {
 
 <div class="tag">@DeewNime</div>
 
+<script>
+// Ganti video player
+function playVideo(url) {
+  const player = document.getElementById('mainPlayer');
+  player.src = url;
+  player.play();
+}
+
+// SIMPLE PARTICLES JS
+const particlesContainer = document.getElementById('particles');
+const totalParticles = 60;
+for(let i=0;i<totalParticles;i++){
+  const star = document.createElement('div');
+  star.style.position='absolute';
+  star.style.width=Math.random()*3+2+'px';
+  star.style.height=star.style.width;
+  star.style.background='rgba(255,255,255,'+Math.random()+')';
+  star.style.borderRadius='50%';
+  star.style.top=Math.random()*100+'%';
+  star.style.left=Math.random()*100+'%';
+  star.style.animation='twinkle '+(Math.random()*5+5)+'s linear infinite';
+  particlesContainer.appendChild(star);
+}
+const style = document.createElement('style');
+style.innerHTML='@keyframes twinkle{0%,100%{opacity:0.2;}50%{opacity:1;}}';
+document.head.appendChild(style);
+</script>
+
 </body>
-  </html>
+</html>
