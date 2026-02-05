@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DeewNime</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+  margin:0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #6a5acd, #483d8b);
+  color: #fff;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  position: relative;
+}
+
+/* VIDEO BACKGROUND LOKAL */
+.video-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+}
+.video-bg video {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  pointer-events: none; /* tidak bisa diklik */
+  opacity: 0.5; /* bisa diatur */
+}
+.video-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.25); /* overlay biar teks terbaca */
+  pointer-events: none;
+}
+
+/* MAIN CONTAINER */
+.container {
+  max-width: 960px;
+  margin: auto;
+  padding: 20px;
+  text-align: center;
+}
+
+/* HEADER */
+h1 {
+  margin-bottom: 20px;
+  font-size: 2.5rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,.5);
+}
+
+/* PLAYER */
+.player iframe {
+  width: 100%;
+  max-width: 720px;
+  height: 405px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,.3);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+.player iframe:hover {
+  transform: scale(1.02);
+}
+
+/* ALBUM GRID */
+.album {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.thumb {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.thumb img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+}
+.thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,.3);
+}
+.thumb-label {
+  text-align:center;
+  font-size:12px;
+  margin-top:4px;
+}
+
+/* TAG @DeewNime */
+.tag {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 100;
+  backdrop-filter: blur(5px);
+}
+</style>
+</head>
+<body>
+
+<div class="video-bg">
+  <video autoplay muted loop playsinline>
+    <source src="elainavid.mp4" type="video/mp4">
+    Video tidak didukung browser ini.
+  </video>
+</div>
+
+<div class="container">
+  <h1>DeewNime</h1>
+  
+  <div class="player">
+    <iframe src="https://archive.org/embed/akz-majo-no-tabitabi-bd-01" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+  </div>
+
+  <div class="album">
+    <!-- 25 thumbnails lokal tanpa link -->
+    <div class="thumb"><img src="Ln1.jpg" alt="Volume 1"><div class="thumb-label">Volume 1</div></div>
+    <div class="thumb"><img src="Ln2.jpg" alt="Volume 2"><div class="thumb-label">Volume 2</div></div>
+    <div class="thumb"><img src="Ln3.jpg" alt="Volume 3"><div class="thumb-label">Volume 3</div></div>
+    <div class="thumb"><img src="Ln4.jpg" alt="Volume 4"><div class="thumb-label">Volume 4</div></div>
+    <div class="thumb"><img src="Ln5.jpg" alt="Volume 5"><div class="thumb-label">Volume 5</div></div>
+    <div class="thumb"><img src="Ln6.jpg" alt="Volume 6"><div class="thumb-label">Volume 6</div></div>
+    <div class="thumb"><img src="Ln7.jpg" alt="Volume 7"><div class="thumb-label">Volume 7</div></div>
+    <div class="thumb"><img src="Ln8.jpg" alt="Volume 8"><div class="thumb-label">Volume 8</div></div>
+    <div class="thumb"><img src="Ln9.jpg" alt="Volume 9"><div class="thumb-label">Volume 9</div></div>
+    <div class="thumb"><img src="Ln10.jpg" alt="Volume 10"><div class="thumb-label">Volume 10</div></div>
+    <div class="thumb"><img src="Ln11.jpg" alt="Volume 11"><div class="thumb-label">Volume 11</div></div>
+    <div class="thumb"><img src="Ln12.jpg" alt="Volume 12"><div class="thumb-label">Volume 12</div></div>
+    <div class="thumb"><img src="Ln13.jpg" alt="Volume 13"><div class="thumb-label">Volume 13</div></div>
+    <div class="thumb"><img src="Ln14.jpg" alt="Volume 14"><div class="thumb-label">Volume 14</div></div>
+    <div class="thumb"><img src="Ln15.jpg" alt="Volume 15"><div class="thumb-label">Volume 15</div></div>
+    <div class="thumb"><img src="Ln16.jpg" alt="Volume 16"><div class="thumb-label">Volume 16</div></div>
+    <div class="thumb"><img src="Ln17.jpg" alt="Volume 17"><div class="thumb-label">Volume 17</div></div>
+    <div class="thumb"><img src="Ln18.jpg" alt="Volume 18"><div class="thumb-label">Volume 18</div></div>
+    <div class="thumb"><img src="Ln19.jpg" alt="Volume 19"><div class="thumb-label">Volume 19</div></div>
+    <div class="thumb"><img src="Ln20.jpg" alt="Volume 20"><div class="thumb-label">Volume 20</div></div>
+    <div class="thumb"><img src="Ln21.jpg" alt="Volume 21"><div class="thumb-label">Volume 21</div></div>
+    <div class="thumb"><img src="Ln22.jpg" alt="Volume 22"><div class="thumb-label">Volume 22</div></div>
+    <div class="thumb"><img src="Ln23.jpg" alt="Volume 23"><div class="thumb-label">Volume 23</div></div>
+    <div class="thumb"><img src="Ln24.jpg" alt="Volume 24"><div class="thumb-label">Volume 24</div></div>
+    <div class="thumb"><img src="Ln25.jpg" alt="Volume 25"><div class="thumb-label">Volume 25</div></div>
+  </div>
+</div>
+
+<div class="tag">@DeewNime</div>
+
+</body>
+  </html>
